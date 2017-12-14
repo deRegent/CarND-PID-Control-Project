@@ -50,6 +50,9 @@ int main(int argc, char *argv[])
         auto j = json::parse(s);
         std::string event = j[0].get<std::string>();
         if (event == "telemetry") {
+
+          std::cout << "telemetry " << j[1] << std::endl;
+
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
           double speed = std::stod(j[1]["speed"].get<std::string>());
