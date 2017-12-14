@@ -32,6 +32,12 @@ int main(int argc, char *argv[])
 {
   uWS::Hub h;
 
+  /*
+  0.1
+  0.000001
+  10
+  */
+
   PID pid;
   // TODO. Initialize the pid variable.
   double init_Kp = atof(argv[1]);
@@ -50,9 +56,6 @@ int main(int argc, char *argv[])
         auto j = json::parse(s);
         std::string event = j[0].get<std::string>();
         if (event == "telemetry") {
-
-          std::cout << "telemetry " << j[1] << std::endl;
-
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
           double speed = std::stod(j[1]["speed"].get<std::string>());
@@ -67,8 +70,10 @@ int main(int argc, char *argv[])
 		  pid.UpdateError(cte);
 		  steer_value = pid.TotalError();
           
+		  std::cout << "CTE: " << cte << std::endl;
+
           // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          // std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
