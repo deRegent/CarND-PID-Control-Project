@@ -35,16 +35,17 @@ int main(int argc, char *argv[])
   /*
   0.1
   0.000001
-  10
+  5
+  0.3
   */
 
   PID pid;
   // TODO. Initialize the pid variable.
-  double init_Kp = atof(argv[1]);
-  double init_Ki = atof(argv[2]);
-  double init_Kd = atof(argv[3]);
+  double init_Kp = 0.1;  // atof(argv[1]);
+  double init_Ki = 0.000001;  // atof(argv[2]);
+  double init_Kd = 5;  // atof(argv[3]);
 
-  double throttle = atof(argv[4]);
+  double throttle = 0.3;  // atof(argv[4]);
 
   pid.Init(init_Kp, init_Ki, init_Kd);
 
