@@ -1,8 +1,10 @@
-# CarND-Controls-PID
+# PID Controller
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
+<img src="title_img.png" width="480" alt="Combined Image" />
+
 In this project I implemented PID vehicle control.
-PID control is an algorithm which set the steering angle in proportion to the "crosstrack error", or CTE. CTE is the lateral distance between the vehicle and the so-called reference trajectory.
+PID control is an algorithm which sets the steering angle in proportion to the "crosstrack error", or CTE. CTE is the lateral distance between the vehicle and the so-called reference trajectory.
 
 ## The implementation
 
@@ -32,7 +34,7 @@ double PID::TotalError() {
 steer_value = pid.TotalError();
 ```
 
-The most important steps of the PID controller implementation is the first step. This is the step where the parametres Kp, Ki and Kd are being set and optimized. 
+The most important step of the PID controller implementation is the first step. This is the step where the parametres Kp, Ki and Kd are being set and tuned. 
 
 The parameter Kp, which is "P" in the PID, helps steer in proportion to the CTE. 
 The parameter Ki, which is "I" in the PID, counters the systematic bias from misaligned wheels.
@@ -40,10 +42,10 @@ The parameter Kd, which is "D" in the PID, reduces overshooting of the car when 
 
 ## PID optimization
 
-The final parameters were chosen by manual testing, recording of the track and comparing the results. The process of manual testing was inspired by Twiddle secting in PID lesson of CarND program.
-First of all, I set my initial guess as [1 0 0]. I recorded the video with this parameters in CarND term2 simulator. When I multiplied the first parameter by 10 and checked if results are better than the previous. Provided it was not any better, I divided my initial guess by 10, so it become [0.1 0 0]. The result trajectory became better, so I divided by 10 again. The result parametres [0.01 0 0] performed not as well as the previous guess, so I set the P parameter to the 0.1. 
+The final parameters were chosen by manual testing, recording of the track and comparing the results. The process of manual testing was inspired by Twiddle section in the PID lesson of the CarND program.
+First of all, I set my initial guess as [1 0 0]. I recorded the video with this parameters in CarND term2 simulator. When I multiplied the first parameter by 10 and checked if results are better than the previous. Provided it was not any better, I divided my initial guess by 10, so it become [0.1 0 0]. The result trajectory became better, so I divided by 10 again. The result parametres [0.01 0 0] performed not so well as the previous guess, so I set the P parameter to the 0.1. When I repeated the following procedure to the I and D parametres. 
 
-When I did the following procedure to the I and D parametres. The parameters which I received were:
+After such simple tuning I received the following set of parametres:
 ```
 P: 0.1
 I: 0.000001
