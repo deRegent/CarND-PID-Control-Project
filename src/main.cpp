@@ -40,6 +40,12 @@ int main(int argc, char *argv[])
 
   PID pid;
   // TODO. Initialize the pid variable.
+
+  // double init_Kp = 0.1;
+  // double init_Ki = 0.000001;
+  // double init_Kd = 10;
+
+  // left for debug purposes
   double init_Kp = atof(argv[1]);
   double init_Ki = atof(argv[2]);
   double init_Kd = atof(argv[3]);
